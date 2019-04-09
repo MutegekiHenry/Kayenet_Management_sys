@@ -17,7 +17,7 @@
             response.sendRedirect("admin_home.jsp");
             }
         else
-            response.sendRedirect("Error.jsp");
+            response.sendRedirect("admin_error_pg.jsp");
         %>
     </body>
 
