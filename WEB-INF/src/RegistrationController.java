@@ -1,5 +1,3 @@
-package com.candid;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -18,7 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/RegistrationController")
 public class RegistrationController extends HttpServlet {
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 		response.setContentType("text/html");
 		  PrintWriter out = response.getWriter();
 		  String name = request.getParameter("fullname");
@@ -40,10 +41,10 @@ public class RegistrationController extends HttpServlet {
 		   // create a test database and student table before running this to create table
 		   //create table student(name varchar(100), userName varchar(100), pass varchar(100), addr varchar(100), age int, qual varchar(100), percent varchar(100), year varchar(100));
 		   try {
-		    Class.forName("org.mariadb.jdbc.Driver");
+		    Class.forName("com.mysql.jdbc.Driver");
 		    // loads mysql(mariadb) driver
 
-		    Connection con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/test", "root", "root"); 
+		    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/kayenet_db", "root", ""); 
 
 		    String query = "insert into student values(?,?,?,?,?,?,?,?)";
 
@@ -65,7 +66,7 @@ public class RegistrationController extends HttpServlet {
 		   } catch (ClassNotFoundException | SQLException e) {
 		    e.printStackTrace();
 		   }
-		   RequestDispatcher rd = request.getRequestDispatcher("adim_home.jsp");
+		   RequestDispatcher rd = request.getRequestDispatcher("admin_home.jsp");
 		   rd.forward(request, response);
 		  }
 		 }
